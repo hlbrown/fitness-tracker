@@ -1,4 +1,5 @@
 const API = {
+  //getting the last workout from the array
   async getLastWorkout() {
     let res;
     try {
@@ -10,6 +11,7 @@ const API = {
 
     return json[json.length - 1];
   },
+  //adds a workout to the array
   async addExercise(data) {
     const id = location.search.split("=")[1];
 

@@ -15,6 +15,24 @@ function calculateTotalWeight(data) {
   return totals;
 }
 
+//calculating the distance
+function calcTotalDistance(data) {
+  const totals = [];
+
+  data.forEach((workout) => {
+    const totalDistance = workout.exercises.reduce((total, { type, distance }) => {
+      if (type === 'cardio') {
+        return total + distance;
+      }
+      return total;
+    }, 0)
+    totals.push(totalDistance);
+  })
+
+  return totals;
+}
+
+
 function populateChart(data) {
   const durations = data.map(({ totalDuration }) => totalDuration);
   const pounds = calculateTotalWeight(data);

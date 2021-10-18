@@ -33,3 +33,56 @@ function tallyExercise(exercises) {
     }, {});
     return tallied;
 }
+
+//converting time to readable format
+function formatDate(date) {
+    const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    };
+    return new Date(date).toLocaleDateString(options);
+}
+
+//renders the workout summary
+function renderFinishedWorkoutSum(summary) {
+    const container = document.querySelector(".workout-stats");
+
+    const woutoutKeyMap = {
+        date: "Date",
+        totalDuration: "Total Workout Duration",
+        numExercises: "Exercises",
+        totalWeight: "Total Weight Lifted",
+        totalSets: "Sets",
+        totalReps: "Reps",
+        totalDistance: "Distance"
+    };
+
+    Object.keys(summary).forEach(key => {
+        const p = document.createElement("p");
+        const strong = document.createElement("strong");
+
+        strong.textContent = workoutKeyMap[key];
+        const textNode = document.createTextNode(`: ${summary[key]}`);
+
+        p.appendChild(strong);
+        p.appendChild(textNode);
+
+        container.appendChild(p);
+    });
+    
+}
+
+function renderNoExercise() {
+    const container = document.querySelector(".workout-stats");
+    const p = document.createElement("p");
+    const strong = document.createElement.createElement("strong");
+
+    strong.textContent = "No Excercise Entered"
+
+    p.appendChild(strong);
+    container.appendChild(p);
+}
+
+sumWorkout();

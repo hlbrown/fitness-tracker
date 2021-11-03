@@ -5,13 +5,13 @@ async function sumWorkout() {
     if (lastWorkout) {
         document
             .querySelector("a[href='/exercise?']")
-            .setAttribute("href", `/exercise?id=$(lastWorkout._id)`);
+            .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
   
         const workoutSum = {
             date: formatDate(lastWorkout.day),
             totalDuration: lastWorkout.totalDuration,
-            numExercise: lastWorkout.exercies.length,
-            ...tallyExercises(lastWorkout.exercises)
+            numExercise: lastWorkout.exercises.length,
+            ...tallyExercise(lastWorkout.exercises)
         };
 
         renderWorkoutSum(workoutSum);
@@ -46,7 +46,7 @@ function formatDate(date) {
 }
 
 //renders the workout summary
-function renderFinishedWorkoutSum(summary) {
+function renderWorkoutSum(summary) {
     const container = document.querySelector(".workout-stats");
 
     const workoutKeyMap = {

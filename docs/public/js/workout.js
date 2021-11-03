@@ -1,5 +1,5 @@
 //workout sumary
-async function sumWorkout() {
+async function initWorkout() {
     const lastWorkout = await API.getLastWorkout();
 
     if (lastWorkout) {
@@ -7,14 +7,14 @@ async function sumWorkout() {
             .querySelector("a[href='/exercise?']")
             .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
   
-        const workoutSum = {
+        const workoutSummary = {
             date: formatDate(lastWorkout.day),
             totalDuration: lastWorkout.totalDuration,
             numExercise: lastWorkout.exercises.length,
             ...tallyExercise(lastWorkout.exercises)
         };
 
-        renderWorkoutSum(workoutSum);
+        renderWorkoutSummary(workoutSummary);
     } else {
         renderNoExercise()
     }
@@ -46,7 +46,7 @@ function formatDate(date) {
 }
 
 //renders the workout summary
-function renderWorkoutSum(summary) {
+function renderWorkoutSummary(summary) {
     const container = document.querySelector(".workout-stats");
 
     const workoutKeyMap = {
@@ -85,4 +85,4 @@ function renderNoExercise() {
     container.appendChild(p);
 }
 
-sumWorkout();
+initWorkout();
